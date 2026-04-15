@@ -8,11 +8,12 @@
   body { font-family: Arial, sans-serif; max-width: 400px; margin: 40px auto; padding: 20px; background: #f5f5f5; }
   .card { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
   h2 { color: #333; margin-bottom: 5px; }
-  .ruolo { color: #888; margin-bottom: 20px; font-size: 14px; }
-  label { font-size: 12px; color: #666; display: block; margin-top: 12px; }
-  input { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; box-sizing: border-box; }
-  button { margin-top: 24px; width: 100%; padding: 12px; background: #2d7a2d; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; }
-  button:hover { background: #245e24; }
+  .ruolo { color: #888; margin-bottom: 24px; font-size: 14px; }
+  .campo { margin-top: 12px; }
+  .campo label { font-size: 11px; color: #aaa; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .campo p { font-size: 15px; color: #333; margin: 0; padding: 8px 0; border-bottom: 1px solid #f0f0f0; }
+  button { margin-top: 28px; width: 100%; padding: 14px; background: #c8102e; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; font-weight: bold; }
+  button:hover { background: #a00d25; }
 </style>
 </head>
 <body>
@@ -34,54 +35,38 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      document.getElementById("nome").value     = DATI.nome + " " + DATI.cognome;
-      document.getElementById("azienda").value  = DATI.azienda;
-      document.getElementById("ruolo").value    = DATI.ruolo;
-      document.getElementById("telefono").value = DATI.telefono;
-      document.getElementById("email").value    = DATI.email;
-      document.getElementById("sito").value     = DATI.sito;
-      document.querySelector("h2").textContent  = DATI.nome + " " + DATI.cognome;
+      document.querySelector("h2").textContent = DATI.nome + " " + DATI.cognome;
       document.querySelector(".ruolo").textContent = DATI.ruolo + " · " + DATI.azienda;
+      document.getElementById("f-nome").textContent     = DATI.nome + " " + DATI.cognome;
+      document.getElementById("f-azienda").textContent  = DATI.azienda;
+      document.getElementById("f-ruolo").textContent    = DATI.ruolo;
+      document.getElementById("f-telefono").textContent = DATI.telefono;
+      document.getElementById("f-email").textContent    = DATI.email;
+      document.getElementById("f-sito").textContent     = DATI.sito;
     });
 
     function scaricaVCard() {
-      const n = document.getElementById("nome").value;
-      const az = document.getElementById("azienda").value;
-      const ru = document.getElementById("ruolo").value;
-      const tel = document.getElementById("telefono").value;
-      const em = document.getElementById("email").value;
-      const si = document.getElementById("sito").value;
-      const vcf = `BEGIN:VCARD\nVERSION:3.0\nFN:${n}\nORG:${az}\nTITLE:${ru}\nTEL:${tel}\nEMAIL:${em}\nURL:${si}\nEND:VCARD`;
+      const vcf = `BEGIN:VCARD\nVERSION:3.0\nFN:${DATI.nome} ${DATI.cognome}\nN:${DATI.cognome};${DATI.nome};;;\nORG:${DATI.azienda}\nTITLE:${DATI.ruolo}\nTEL;TYPE=WORK,VOICE:${DATI.telefono}\nEMAIL;TYPE=WORK:${DATI.email}\nURL:${DATI.sito}\nEND:VCARD`;
       const blob = new Blob([vcf], {type: "text/vcard"});
       const a = document.createElement("a");
       a.href = URL.createObjectURL(blob);
-      a.download = n.replace(" ","_") + ".vcf";
+      a.download = DATI.nome + "_" + DATI.cognome + ".vcf";
       a.click();
     }
   </script>
 
-  <h2>Nome Cognome</h2>
-  <p class="ruolo">Ruolo · Azienda</p>
+  <h2></h2>
+  <p class="ruolo"></p>
 
-  <label>Nome Completo</label>
-  <input type="text" id="nome">
+  <div class="campo"><label>Nome</label><p id="f-nome"></p></div>
+  <div class="campo"><label>Azienda</label><p id="f-azienda"></p></div>
+  <div class="campo"><label>Ruolo</label><p id="f-ruolo"></p></div>
+  <div class="campo"><label>Telefono</label><p id="f-telefono"></p></div>
+  <div class="campo"><label>Email</label><p id="f-email"></p></div>
+  <div class="campo"><label>Sito Web</label><p id="f-sito"></p></div>
 
-  <label>Azienda</label>
-  <input type="text" id="azienda">
+  <button onclick="scaricaVCard()">⬇ Salva Contatto</button>
 
-  <label>Ruolo</label>
-  <input type="text" id="ruolo">
-
-  <label>Telefono</label>
-  <input type="text" id="telefono">
-
-  <label>Email</label>
-  <input type="text" id="email">
-
-  <label>Sito Web</label>
-  <input type="text" id="sito">
-
-  <button onclick="scaricaVCard()">⬇ Scarica Contatto</button>
 </div>
 </body>
 </html>
