@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biglietto da Visita</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 400px; margin: 40px auto; padding: 20px; background: #f5f5f5; }
+  .card { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+  h2 { color: #333; margin-bottom: 5px; }
+  .ruolo { color: #888; margin-bottom: 20px; font-size: 14px; }
+  label { font-size: 12px; color: #666; display: block; margin-top: 12px; }
+  input { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; box-sizing: border-box; }
+  button { margin-top: 24px; width: 100%; padding: 12px; background: #2d7a2d; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; }
+  button:hover { background: #245e24; }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- ======= MODIFICA SOLO QUI ======= -->
+  <script>
+    const DATI = {
+      nome:     "Giuseppe",
+      cognome:  "Albertini",
+      azienda:  "OCME srl",
+      ruolo:    "Customer Support",
+      telefono: "+39 0521 000000",
+      email:    "giuseppe.albertini@ocme.com",
+      sito:     "https://www.ocme.com"
+    };
+  </script>
+  <!-- ======= FINE MODIFICA ======= -->
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document.getElementById("nome").value     = DATI.nome + " " + DATI.cognome;
+      document.getElementById("azienda").value  = DATI.azienda;
+      document.getElementById("ruolo").value    = DATI.ruolo;
+      document.getElementById("telefono").value = DATI.telefono;
+      document.getElementById("email").value    = DATI.email;
+      document.getElementById("sito").value     = DATI.sito;
+      document.querySelector("h2").textContent  = DATI.nome + " " + DATI.cognome;
+      document.querySelector(".ruolo").textContent = DATI.ruolo + " · " + DATI.azienda;
+    });
+
+    function scaricaVCard() {
+      const n = document.getElementById("nome").value;
+      const az = document.getElementById("azienda").value;
+      const ru = document.getElementById("ruolo").value;
+      const tel = document.getElementById("telefono").value;
+      const em = document.getElementById("email").value;
+      const si = document.getElementById("sito").value;
+      const vcf = `BEGIN:VCARD\nVERSION:3.0\nFN:${n}\nORG:${az}\nTITLE:${ru}\nTEL:${tel}\nEMAIL:${em}\nURL:${si}\nEND:VCARD`;
+      const blob = new Blob([vcf], {type: "text/vcard"});
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = n.replace(" ","_") + ".vcf";
+      a.click();
+    }
+  </script>
+
+  <h2>Nome Cognome</h2>
+  <p class="ruolo">Ruolo · Azienda</p>
+
+  <label>Nome Completo</label>
+  <input type="text" id="nome">
+
+  <label>Azienda</label>
+  <input type="text" id="azienda">
+
+  <label>Ruolo</label>
+  <input type="text" id="ruolo">
+
+  <label>Telefono</label>
+  <input type="text" id="telefono">
+
+  <label>Email</label>
+  <input type="text" id="email">
+
+  <label>Sito Web</label>
+  <input type="text" id="sito">
+
+  <button onclick="scaricaVCard()">⬇ Scarica Contatto</button>
+</div>
+</body>
+</html>
