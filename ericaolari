@@ -12,8 +12,8 @@
   .campo { margin-top: 12px; }
   .campo label { font-size: 11px; color: #aaa; display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
   .campo p { font-size: 15px; color: #333; margin: 0; padding: 8px 0; border-bottom: 1px solid #f0f0f0; }
-  button { margin-top: 28px; width: 100%; padding: 14px; background: #c8102e; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; font-weight: bold; }
-  button:hover { background: #a00d25; }
+  button { margin-top: 28px; width: 100%; padding: 14px; background: #E5352C; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; font-weight: bold; }
+  button:hover { background: #c42d25; }
 </style>
 </head>
 <body>
@@ -26,7 +26,7 @@
       cognome:  "Olari",
       azienda:  "OCME srl",
       ruolo:    "Area Manager",
-      telefono: "+393666018949",
+      telefono: "+39666018949",
       email:    "erica.olari@ocme.com",
       sito:     "https://www.ocme.com"
     };
