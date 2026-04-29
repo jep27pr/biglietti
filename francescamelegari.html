@@ -17,8 +17,6 @@
   .btn-save:hover { background: #c42d25; }
   .btn-linkedin { background: #0A66C2; color: white; margin-top: 14px; }
   .btn-linkedin:hover { background: #084e96; }
-  .btn-booking { background: #0078D4; color: white; margin-top: 14px; }
-  .btn-booking:hover { background: #005fa3; }
 </style>
 </head>
 <body>
@@ -33,27 +31,27 @@
       ruolo:    "Sales Manager After Sales",
       telefono: "+393452907095",
       email:    "francesca.melegari@ocme.com",
-      sito:     "https://www.ocme.com"
-      linkedin: "https://www.linkedin.com/in/francesca-melegari-46715249",
+      sito:     "https://www.ocme.com",
+      linkedin: "https://www.linkedin.com/in/francesca-melegari-46715249"
     };
   </script>
   <!-- ======= FINE MODIFICA ======= -->
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      document.querySelector("h2").textContent            = DATI.nome + " " + DATI.cognome;
-      document.querySelector(".ruolo").textContent        = DATI.ruolo + " · " + DATI.azienda;
-      document.getElementById("f-nome").textContent       = DATI.nome + " " + DATI.cognome;
-      document.getElementById("f-azienda").textContent    = DATI.azienda;
-      document.getElementById("f-ruolo").textContent      = DATI.ruolo;
-      document.getElementById("f-mobile").textContent     = DATI.mobile;
-      document.getElementById("f-email").textContent      = DATI.email;
-      document.getElementById("f-sito").textContent       = DATI.sito;
-      document.getElementById("btn-linkedin").href        = DATI.linkedin;
+      document.querySelector("h2").textContent         = DATI.nome + " " + DATI.cognome;
+      document.querySelector(".ruolo").textContent     = DATI.ruolo + " · " + DATI.azienda;
+      document.getElementById("f-nome").textContent    = DATI.nome + " " + DATI.cognome;
+      document.getElementById("f-azienda").textContent = DATI.azienda;
+      document.getElementById("f-ruolo").textContent   = DATI.ruolo;
+      document.getElementById("f-telefono").textContent = DATI.telefono;
+      document.getElementById("f-email").textContent   = DATI.email;
+      document.getElementById("f-sito").textContent    = DATI.sito;
+      document.getElementById("btn-linkedin").href     = DATI.linkedin;
     });
 
     function scaricaVCard() {
-      const vcf = `BEGIN:VCARD\nVERSION:3.0\nFN:${DATI.nome} ${DATI.cognome}\nN:${DATI.cognome};${DATI.nome};;;\nORG:${DATI.azienda}\nTITLE:${DATI.ruolo}\nTEL;TYPE=CELL,VOICE:${DATI.mobile}\nEMAIL;TYPE=WORK:${DATI.email}\nURL:${DATI.sito}\nEND:VCARD`;
+      const vcf = `BEGIN:VCARD\nVERSION:3.0\nFN:${DATI.nome} ${DATI.cognome}\nN:${DATI.cognome};${DATI.nome};;;\nORG:${DATI.azienda}\nTITLE:${DATI.ruolo}\nTEL;TYPE=CELL,VOICE:${DATI.telefono}\nEMAIL;TYPE=WORK:${DATI.email}\nURL:${DATI.sito}\nEND:VCARD`;
       const blob = new Blob([vcf], {type: "text/vcard"});
       const a = document.createElement("a");
       a.href = URL.createObjectURL(blob);
@@ -68,7 +66,7 @@
   <div class="campo"><label>Full Name</label><p id="f-nome"></p></div>
   <div class="campo"><label>Company</label><p id="f-azienda"></p></div>
   <div class="campo"><label>Role</label><p id="f-ruolo"></p></div>
-  <div class="campo"><label>Mobile</label><p id="f-mobile"></p></div>
+  <div class="campo"><label>Mobile</label><p id="f-telefono"></p></div>
   <div class="campo"><label>Email</label><p id="f-email"></p></div>
   <div class="campo"><label>Website</label><p id="f-sito"></p></div>
 
@@ -85,4 +83,3 @@
 </div>
 </body>
 </html>
-
