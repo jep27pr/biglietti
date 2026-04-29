@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="pt">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Biglietto da Visita</title>
+<title>Cartão de Visita</title>
 <style>
   body { font-family: Arial, sans-serif; max-width: 400px; margin: 40px auto; padding: 20px; background: #f5f5f5; }
   .card { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
@@ -19,19 +19,19 @@
 <body>
 <div class="card">
 
-  <!-- ======= MODIFICA SOLO QUI ======= -->
+  <!-- ======= MODIFIQUE APENAS AQUI ======= -->
   <script>
     const DATI = {
       nome:     "Marcelo",
       cognome:  "Lantin",
-      azienda:  "Ocme srl",
-      ruolo:    "Sales & After Sales Manager BRASIL",
+      azienda:  "OCME srl",
+      ruolo:    "Diretor de Servicos",
       telefono: "+5511981551222",
       email:    "marcelo.lantin@ocme.com",
       sito:     "https://www.ocme.com"
     };
   </script>
-  <!-- ======= FINE MODIFICA ======= -->
+  <!-- ======= FIM DA MODIFICAÇÃO ======= -->
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -40,9 +40,9 @@
       document.getElementById("f-nome").textContent     = DATI.nome + " " + DATI.cognome;
       document.getElementById("f-azienda").textContent  = DATI.azienda;
       document.getElementById("f-ruolo").textContent    = DATI.ruolo;
-      document.getElementById("f-telefono").textContent = DATI.telefono;
+      document.getElementById("f-telefone").textContent = DATI.telefono;
       document.getElementById("f-email").textContent    = DATI.email;
-      document.getElementById("f-sito").textContent     = DATI.sito;
+      document.getElementById("f-site").textContent     = DATI.sito;
     });
 
     function scaricaVCard() {
@@ -58,14 +58,14 @@
   <h2></h2>
   <p class="ruolo"></p>
 
-<div class="campo"><label>Nome</label><p id="f-nome"></p></div>
-<div class="campo"><label>Empresa</label><p id="f-empresa"></p></div>
-<div class="campo"><label>Cargo</label><p id="f-cargo"></p></div>
-<div class="campo"><label>Telefone</label><p id="f-telefone"></p></div>
-<div class="campo"><label>E-mail</label><p id="f-email"></p></div>
-<div class="campo"><label>Site Web</label><p id="f-site"></p></div>
+  <div class="campo"><label>Nome</label><p id="f-nome"></p></div>
+  <div class="campo"><label>Empresa</label><p id="f-azienda"></p></div>
+  <div class="campo"><label>Cargo</label><p id="f-ruolo"></p></div>
+  <div class="campo"><label>Telefone</label><p id="f-telefone"></p></div>
+  <div class="campo"><label>E-mail</label><p id="f-email"></p></div>
+  <div class="campo"><label>Site</label><p id="f-site"></p></div>
 
-  <button onclick="scaricaVCard()">⬇ Salva Contatto</button>
+  <button onclick="scaricaVCard()">⬇ Salvar Contato</button>
 
 </div>
 </body>
