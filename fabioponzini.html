@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fabio Ponzini · Aetna Group</title>
+<style>
+:root{--red:#c7362d;--blue:#003a73}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;max-width:420px;margin:40px auto;padding:16px;background:#f4f4f4}
+.card{background:#fff;border-radius:14px;padding:28px;box-shadow:0 2px 16px rgba(0,58,115,.10)}
+.lang-bar{text-align:right;margin-bottom:20px}
+.lang-bar select{border:1.5px solid #e0e0e0;border-radius:7px;padding:5px 10px;font-size:12px;font-family:inherit;color:var(--blue);font-weight:600;outline:none;cursor:pointer}
+.campo{margin-top:14px}
+.campo label{font-size:10px;color:#aaa;display:block;margin-bottom:3px;text-transform:uppercase;letter-spacing:.8px;font-weight:700}
+.campo p,.campo a{font-size:15px;color:#222;display:block;padding:7px 0;border-bottom:1px solid #f0f0f0;text-decoration:none;margin:0}
+.campo a:active{color:var(--red)}
+.btn{margin-top:14px;width:100%;padding:13px;border:none;border-radius:9px;font-size:15px;cursor:pointer;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;box-sizing:border-box;font-family:inherit}
+.btn-save{background:var(--red);color:#fff}
+.btn-linkedin{background:#0A66C2;color:#fff;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="lang-bar">
+    <select id="lang-sel" onchange="setLang(this.value)"><option value="it">Italiano</option><option value="en">English</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option><option value="de">Deutsch</option><option value="he">עברית</option><option value="zh">中文</option><option value="ru">Русский</option><option value="ar">العربية</option></select>
+  </div>
+  <div class="campo"><label id="lbl-nome"></label><p>Fabio Ponzini</p></div>
+  <div class="campo"><label id="lbl-azienda"></label><p>OCME srl</p></div>
+  <div class="campo"><label id="lbl-ruolo"></label><p>Field Automation Engineer</p></div>
+  <div class="campo"><label id="lbl-telefono"></label><a href="tel:+393371610883">+393371610883</a></div>
+  
+  <div class="campo"><label id="lbl-email"></label><a href="mailto:fabio.ponzini@ocme.com">fabio.ponzini@ocme.com</a></div>
+  <div class="campo"><label id="lbl-sito"></label><a href="https://www.ocme.com" target="_blank">https://www.ocme.com</a></div>
+  <button class="btn btn-save" onclick="saveVCard()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 16l-6-6h4V4h4v6h4l-6 6zm-6 2h12v2H6v-2z"/></svg>
+    <span id="lbl-save"></span>
+  </button>
+  <a class="btn btn-linkedin" href="https://www.linkedin.com/in/fabio-ponzini-320372a0/" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452H17.21v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.987V9h3.102v1.561h.046c.432-.82 1.489-1.684 3.065-1.684 3.278 0 3.883 2.157 3.883 4.962v6.613zM5.337 7.433a1.8 1.8 0 1 1 0-3.6 1.8 1.8 0 0 1 0 3.6zm1.554 13.019H3.783V9h3.108v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span id="lbl-linkedin"></span></a>
+</div>
+
+<script>
+var D={"nome":"Fabio","cognome":"Ponzini","azienda":"OCME srl","ruolo":"Field Automation Engineer","telefono":"+393371610883","telefono2":"","email":"fabio.ponzini@ocme.com","sito":"https://www.ocme.com"};
+var FL={"it":{"nome":"Nome Completo","azienda":"Azienda","ruolo":"Ruolo","telefono":"Telefono","telefono2":"Telefono 2","email":"Email","sito":"Sito Web","save":"Salva Contatto","linkedin":"Vedi profilo LinkedIn"},"en":{"nome":"Full Name","azienda":"Company","ruolo":"Role","telefono":"Mobile","telefono2":"Mobile 2","email":"Email","sito":"Website","save":"Save Contact","linkedin":"View LinkedIn Profile"},"es":{"nome":"Nombre","azienda":"Empresa","ruolo":"Cargo","telefono":"Teléfono","telefono2":"Teléfono 2","email":"Email","sito":"Sitio Web","save":"Guardar Contacto","linkedin":"Ver perfil LinkedIn"},"fr":{"nome":"Nom","azienda":"Entreprise","ruolo":"Poste","telefono":"Téléphone","telefono2":"Téléphone 2","email":"Email","sito":"Site Web","save":"Enregistrer Contact","linkedin":"Voir profil LinkedIn"},"pt":{"nome":"Nome","azienda":"Empresa","ruolo":"Cargo","telefono":"Telefone","telefono2":"Telefone 2","email":"Email","sito":"Site","save":"Guardar Contato","linkedin":"Ver perfil LinkedIn"},"de":{"nome":"Name","azienda":"Unternehmen","ruolo":"Position","telefono":"Telefon","telefono2":"Telefon 2","email":"Email","sito":"Website","save":"Kontakt Speichern","linkedin":"LinkedIn Profil"},"he":{"nome":"שם מלא","azienda":"חברה","ruolo":"תפקיד","telefono":"טלפון","telefono2":"טלפון 2","email":"אימייל","sito":"אתר","save":"שמור איש קשר","linkedin":"פרופיל LinkedIn"},"zh":{"nome":"姓名","azienda":"公司","ruolo":"职位","telefono":"电话","telefono2":"电话 2","email":"邮箱","sito":"网站","save":"保存联系人","linkedin":"查看领英"},"ru":{"nome":"Имя","azienda":"Компания","ruolo":"Должность","telefono":"Телефон","telefono2":"Телефон 2","email":"Email","sito":"Сайт","save":"Сохранить контакт","linkedin":"Профиль LinkedIn"},"ar":{"nome":"الاسم","azienda":"الشركة","ruolo":"المسمى","telefono":"هاتف","telefono2":"هاتف 2","email":"البريد","sito":"الموقع","save":"حفظ جهة الاتصال","linkedin":"ملف LinkedIn"}};
+var LN={"it":"Italiano","en":"English","es":"Español","fr":"Français","pt":"Português","de":"Deutsch","he":"עברית","zh":"中文","ru":"Русский","ar":"العربية"};
+var LANGS=["it","en","es","fr","pt","de","he","zh","ru","ar"];
+var FID='fabioponzini-63023b9';
+
+function setLang(l){
+  var f=FL[l]||FL['en']||FL[LANGS[0]];
+  var map=['nome','azienda','ruolo','telefono','telefono2','email','sito','save','linkedin'];
+  map.forEach(function(k){
+    var el=document.getElementById('lbl-'+k);
+    if(el&&f[k]!==undefined) el.textContent=f[k];
+  });
+  document.body.style.direction=(l==='he'||l==='ar')?'rtl':'ltr';
+  try{localStorage.setItem('cl_'+FID,l);}catch(e){}
+}
+
+function getBestLang(){
+  var saved; try{saved=localStorage.getItem('cl_'+FID);}catch(e){}
+  if(saved&&LANGS.indexOf(saved)>=0) return saved;
+  var br=(navigator.language||'it').slice(0,2).toLowerCase();
+  if(LANGS.indexOf(br)>=0) return br;
+  return LANGS[0];
+}
+
+function saveVCard(){
+  var lines=[
+    'BEGIN:VCARD','VERSION:3.0',
+    'FN:'+D.nome+' '+D.cognome,
+    'N:'+D.cognome+';'+D.nome+';;;',
+    'ORG:'+D.azienda,
+    'TITLE:'+D.ruolo
+  ];
+  if(D.telefono)  lines.push('TEL;TYPE=CELL,VOICE:'+D.telefono);
+  if(D.telefono2) lines.push('TEL;TYPE=CELL,VOICE:'+D.telefono2);
+  if(D.email)     lines.push('EMAIL;TYPE=WORK:'+D.email);
+  if(D.sito)      lines.push('URL:'+D.sito);
+  lines.push('END:VCARD');
+  var blob=new Blob([lines.join('\r\n')],{type:'text/vcard'});
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=D.nome+'_'+D.cognome+'.vcf';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+(function(){
+  var best=getBestLang();
+  document.getElementById('lang-sel').value=best;
+  setLang(best);
+})();
+</script>
+</body>
+</html>
